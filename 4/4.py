@@ -1,12 +1,12 @@
-import random
-import my_module
+# import random
+# import my_module
 
+# random_int = random.randint(0,100)
 
-random_int = random.randint(0,100)
+# print(random_int)
+# print(my_module.pi) 
 
-print(random_int)
-print(my_module.pi) 
+# random_float = random.random()
 
-random_float = random.random()
+# print(random_float * 5)
 
-print(random_float * 5)
