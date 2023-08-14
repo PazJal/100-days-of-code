@@ -10,3 +10,8 @@
 
 # print(random_float * 5)
 
+
+dirty_dozen = ["Strawberries", "Spinach", "Kale", "Nectarines", "Apples", "Grapes", "Peaches",
+               "Cherries", "Pears", "Tomatoes", "Celery", "Potatoes"]
+
+print(dirty_dozen)
