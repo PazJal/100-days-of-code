@@ -43,6 +43,10 @@ player_input = input()
 
 # Convert to int
 player_choice = int(player_input)
+if(player_choice >=3 or player_choice <=0):
+  print("You entered an invalid number, you lose.")
+  exit()
+
 print(drawings[player_choice])
 
 # Generate computer choice
