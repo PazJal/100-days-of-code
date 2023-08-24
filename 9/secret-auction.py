@@ -22,7 +22,7 @@ while bid_again:
   if additional_bidders == "no":
     bid_again = False
     
-winner = max(bids, key=bids.get)
+winner = max(bids, key=bids.get) 
 print(f"The winner is {winner} with a bid of ${bids[winner]}")
 
 
