@@ -10,7 +10,7 @@ student_scores = {
 #1: Create an empty dictionary called student_grades.
 student_grades = {}
 
-#TODO-2: Write your code below to add the grades to student_grades.👇
+#2: Write your code below to add the grades to student_grades.👇
 for key in student_scores:
   letter_grade = ""
   number_grade = student_scores[key]
@@ -24,8 +24,6 @@ for key in student_scores:
     letter_grade = "Fail"
   student_grades[key] = letter_grade 
   
-
-    
 
 # 🚨 Don't change the code below 👇
 print(student_grades)
