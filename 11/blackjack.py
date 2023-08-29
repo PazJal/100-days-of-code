@@ -50,6 +50,6 @@ def to_hit():
 def calc_score(player_hand):
   return sum(player_hand)
 
-# TODO: Create game flow chart
+# TODO: Implement logic accoring to chart
 
 
