@@ -16,12 +16,14 @@ def play_another_game():
     return True
   return False
 
+# TODO: Recreate according to the intial deal in blackjack. 
 # deal cards. 
 def deal_inital_hand():
   player1 = [random.choice(cards), random.choice(cards)]
   player2 = [random.choice(cards), random.choice(cards)]
   return (player1, player2)
 
+# TODO: Rename to reflect that this only applies to the dealer. update to single input single output. 
 def deal():  
   (p1,p2) = deal_inital_hand()
   if sum(p1) < 17:
@@ -42,6 +44,7 @@ def to_hit():
 
 # Evaluate score.
 def calc_score(player_hand):
+  # TODO: Account for the double value of aces on the calculate function. 
   return sum(player_hand)
 
 # TODO: Implement logic accoring to chart
@@ -56,6 +59,7 @@ while play_game:
   
   (computer_cards, player_cards) = deal()
 
+  # TODO: Refactor into its own function. 
   # print hands
   print(f"    Your cards: {player_cards}, current score: {calc_score(player_cards)}")
   print(f"    Computer's first card: {computer_cards[0]}")
@@ -76,3 +80,12 @@ while play_game:
   # print win or lose.
   
   # prompt additional game.
+  
+  
+# Play order:
+# Dealr draws 1
+# Player draws 2
+# Players hit
+# Dealer finishes drawing
+# Bets are settled. 
+#
