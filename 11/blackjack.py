@@ -16,23 +16,18 @@ def play_another_game():
     return True
   return False
 
-# TODO: Recreate according to the intial deal in blackjack. 
 # deal cards. 
 def deal_inital_hand():
-  player1 = [random.choice(cards), random.choice(cards)]
-  player2 = [random.choice(cards), random.choice(cards)]
+  player1 = draw_card()
+  player2 = draw_card() + draw_card()
   return (player1, player2)
 
-# TODO: Rename to reflect that this only applies to the dealer. update to single input single output. 
-def deal():  
-  (p1,p2) = deal_inital_hand()
-  if sum(p1) < 17:
-    p1 += draw_card()
-  # print(p1)
-  return (p1,p2)
+def resolve_dealer_hand(dealer_hand):  
+  while sum(dealer_hand) < 17:
+    dealer_hand += draw_card()
   
-deal()
-
+  return dealer_hand
+  
 # prompt hit
 def to_hit():
   hit_input = input("Type 'y' to get another card, type 'n' to pass: ")
@@ -40,16 +35,17 @@ def to_hit():
     return True
   return False
 
-
-
 # Evaluate score.
 def calc_score(player_hand):
-  # TODO: Account for the double value of aces on the calculate function. 
-  return sum(player_hand)
+  # TODO: Test this function 
+  number_of_aces = player_hand.count(11)
+  current_score = sum(player_hand)
+  while current_score > 21 and number_of_aces > 0:
+    current_score -= 10
+    number_of_aces -= 1
+  return current_score
 
 # TODO: Implement logic accoring to chart
-
-
 # Prompt for game:
 play_game = play_another_game()
 
@@ -57,35 +53,58 @@ while play_game:
   
   print(logo)
   
-  (computer_cards, player_cards) = deal()
+  (computer_cards, player_cards) = deal_inital_hand()
 
-  # TODO: Refactor into its own function. 
+  # ? TODO: Refactor into its own function. 
   # print hands
   print(f"    Your cards: {player_cards}, current score: {calc_score(player_cards)}")
   print(f"    Computer's first card: {computer_cards[0]}")
   
+  player_lost = (calc_score(player_cards) > 21)
+  
   # prompt hit
-  did_hit = to_hit()
-  while to_hit():
+  
+  hit = True
+  while hit and not player_lost:
     
-    #draw
-    draw_card()
+    hit = to_hit()
+    
+    if hit:
+      #draw
+      player_cards += draw_card()
+      
+      # TODO: Output players cards
+      print(f"    Your cards: {player_cards}, current score: {calc_score(player_cards)}")
+      
     
     # check score
-    
-    # prompt additional hit
-    
-  # Evaluate score
-  
-  # print win or lose.
-  
+    if calc_score(player_cards) > 21:
+      player_lost = True
+      
+  if player_lost:
+    # TODO: Lose case 
+    print("L-O-S-E-R")
+  else:
+    # TODO: other case
+    computer_cards = resolve_dealer_hand(computer_cards)
+    if calc_score(computer_cards) > 21:
+      # TODO: Win case
+      print("winnner winner chicken dinner")
+    else:
+      # TODO: Evaluate score 
+      if calc_score(player_cards) > calc_score(computer_cards):
+        # TODO: Win case
+        print("winner")
+      else: 
+        print("loser")
+        
   # prompt additional game.
+  play_game = play_another_game()
   
   
-# Play order:
-# Dealr draws 1
-# Player draws 2
-# Players hit
-# Dealer finishes drawing
-# Bets are settled. 
-#
+# -[x] Play order:
+# -[x] Dealr draws 1
+# -[x] Player draws 2
+# -[x] Players hit
+# -[x] Dealer finishes drawing
+# -[x] Bets are settled. 
