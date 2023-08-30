@@ -9,13 +9,6 @@ computer_cards = []
 def draw_card():
   return [random.choice(cards)]
 
-# def deal_cards():
-  
-
-# print(cards)
-# print(draw_card())
-# print(logo)
-
 # prompts player for a game
 def play_another_game():
   play_game_input = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
@@ -33,7 +26,8 @@ def deal():
   (p1,p2) = deal_inital_hand()
   if sum(p1) < 17:
     p1 += draw_card()
-  print(p1)
+  # print(p1)
+  return (p1,p2)
   
 deal()
 
@@ -53,3 +47,32 @@ def calc_score(player_hand):
 # TODO: Implement logic accoring to chart
 
 
+# Prompt for game:
+play_game = play_another_game()
+
+while play_game:
+  
+  print(logo)
+  
+  (computer_cards, player_cards) = deal()
+
+  # print hands
+  print(f"    Your cards: {player_cards}, current score: {calc_score(player_cards)}")
+  print(f"    Computer's first card: {computer_cards[0]}")
+  
+  # prompt hit
+  did_hit = to_hit()
+  while to_hit():
+    
+    #draw
+    draw_card()
+    
+    # check score
+    
+    # prompt additional hit
+    
+  # Evaluate score
+  
+  # print win or lose.
+  
+  # prompt additional game.
