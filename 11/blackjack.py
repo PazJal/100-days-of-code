@@ -34,10 +34,10 @@ def to_hit():
   if hit_input == 'y':
     return True
   return False
-
 # Evaluate score.
 def calc_score(player_hand):
-  # TODO: Test this function 
+  if len(player_hand) == 2 and sum(player_hand) == 21:
+    return 0
   number_of_aces = player_hand.count(11)
   current_score = sum(player_hand)
   while current_score > 21 and number_of_aces > 0:
@@ -48,56 +48,56 @@ def calc_score(player_hand):
 # TODO: Implement logic accoring to chart
 # Prompt for game:
 play_game = play_another_game()
+is_game_over = False
 
 while play_game:
   
   print(logo)
   
   (computer_cards, player_cards) = deal_inital_hand()
+  user_score = calc_score(player_cards)
+  computer_score = calc_score(computer_cards)
 
   # ? TODO: Refactor into its own function. 
   # print hands
   print(f"    Your cards: {player_cards}, current score: {calc_score(player_cards)}")
   print(f"    Computer's first card: {computer_cards[0]}")
   
-  player_lost = (calc_score(player_cards) > 21)
-  
+  if user_score == 0 or computer_score == 0:
+    is_game_over = True 
+  else:
   # prompt hit
   
-  hit = True
-  while hit and not player_lost:
-    
-    hit = to_hit()
-    
-    if hit:
-      #draw
-      player_cards += draw_card()
+    hit = True
+    while hit and not is_game_over:
       
-      # TODO: Output players cards
-      print(f"    Your cards: {player_cards}, current score: {calc_score(player_cards)}")
+      hit = to_hit()
       
-    
-    # check score
-    if calc_score(player_cards) > 21:
-      player_lost = True
-      
-  if player_lost:
-    # TODO: Lose case 
-    print("L-O-S-E-R")
-  else:
-    # TODO: other case
-    computer_cards = resolve_dealer_hand(computer_cards)
-    if calc_score(computer_cards) > 21:
-      # TODO: Win case
-      print("winnner winner chicken dinner")
-    else:
-      # TODO: Evaluate score 
-      if calc_score(player_cards) > calc_score(computer_cards):
-        # TODO: Win case
-        print("winner")
-      else: 
-        print("loser")
+      if hit:
+        #draw
+        player_cards += draw_card()
+        print(f"    Your cards: {player_cards}, current score: {calc_score(player_cards)}")
+      # check score
+      if calc_score(player_cards) > 21:
+        is_game_over = True
         
+    if is_game_over:
+      
+      print("L-O-S-E-R")
+    else:
+      
+      computer_cards = resolve_dealer_hand(computer_cards)
+      if calc_score(computer_cards) > 21:
+        
+        print("winnner winner chicken dinner")
+      else:
+        
+        if calc_score(player_cards) > calc_score(computer_cards):
+          
+          print("winner")
+        else: 
+          print("loser")
+          
   # prompt additional game.
   play_game = play_another_game()
   
