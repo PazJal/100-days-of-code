@@ -45,7 +45,6 @@ def calc_score(player_hand):
     number_of_aces -= 1
   return current_score
 
-# TODO: Implement logic accoring to chart
 # Prompt for game:
 play_game = play_another_game()
 is_game_over = False
@@ -58,7 +57,7 @@ while play_game:
   user_score = calc_score(player_cards)
   computer_score = calc_score(computer_cards)
 
-  # ? TODO: Refactor into its own function. 
+  
   # print hands
   print(f"    Your cards: {player_cards}, current score: {calc_score(player_cards)}")
   print(f"    Computer's first card: {computer_cards[0]}")
