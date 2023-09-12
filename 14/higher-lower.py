@@ -83,3 +83,6 @@ print(f"Your score is: {score}")
 # 3. create a function for the evaluating user guess
 # 4. add score tracking. 
 # 5. wrap it up in a while loop. 
+
+# TODO: Add score print to round. 
+# TODO: remove comments
