@@ -1,20 +1,3 @@
-# Game overview:
-
-# Initialize - choose two points to compare. 
-
-# repeating section:
-  
-#   Player makes a guess. 
-#   Player is either eliminated or moves to next stage. 
-  
-#   make second data point first data point
-#   draw a new data point. 
-
-# Initialize game
-  # -[x] Print logo
-  # -[x] Draw 2 data points. 
-
-
 from art import logo, vs
 from game_data import data
 from random import randint
@@ -30,7 +13,6 @@ def get_data_point():
 
 def stringify_data(data_point):
   name = data_point["name"]
-  # followers = data_point["follower_count"]
   desc = data_point["description"]
   country = data_point["country"]
   return f"{name}, a {desc}, from {country}."
@@ -43,7 +25,10 @@ def who_has_more_followers(A, B):
     return 'A'
   return 'B'
 
-def round(A,B):
+def round(A,B, current_score):
+  print(logo)
+  if current_score != 0 :
+    print(f"You're right! Current score is: {current_score}")
   print(f"Compare A: {stringify_data(A)}")
   print(vs)
   print(f"Against B: {stringify_data(B)}")
@@ -56,18 +41,14 @@ def round(A,B):
     return 0
 
 # Program start
-print(logo)
 
 # Draw inital data points:
 A = get_data_point()
 B = get_data_point()
 
-# print(A)
-# print(B)
-
 # Gameplay part:
 while keep_playing:
-  round_result = round(A,B)
+  round_result = round(A,B, score)
   score += round_result
   if round_result == 0:
     keep_playing = False
@@ -77,12 +58,3 @@ while keep_playing:
     
 print(logo)
 print(f"Your score is: {score}")
-# reapting section
-# 1. create a function to print data points. 
-# 2. create a function to prompt user for input
-# 3. create a function for the evaluating user guess
-# 4. add score tracking. 
-# 5. wrap it up in a while loop. 
-
-# TODO: Add score print to round. 
-# TODO: remove comments
