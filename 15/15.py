@@ -48,6 +48,10 @@ def input_money():
     
     return (quarters * 0.25 + dimes * 0.1 + nickles * 0.05 + pennies * 0.01)
     
+# general order prompt
+def select_operation():
+    operation = input("What would you like? ('e' for espresso, 'l' for latter, 'c' for cappuccino): ")
+    
 
 
 print("Hello, Please order your coffee.")
@@ -55,7 +59,6 @@ print_report()
 
 print(input_money())
 
-# TODO: Create general order prompt
 
 
 # TODO: Create a function to test the resources
