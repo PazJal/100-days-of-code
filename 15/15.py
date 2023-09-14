@@ -30,3 +30,18 @@ resources = {
     "coffee": 100,
 }
 
+
+
+
+print("Hello, Please order your coffee.")
+
+
+# TODO: Create general order prompt
+
+# TODO: Create money prompt
+
+# TODO: Create a function to test the resources
+
+# TODO: Create a function to print report
+
+
