@@ -33,6 +33,7 @@ resources = {
 ESPRESSO = "espresso"
 LATTE = "latte"
 CAPPUCCINO = "cappuccino"
+INGREDIENTS = "ingredients"
 
 money = 0
 
@@ -91,7 +92,6 @@ def has_money(money, drink_selected):
 def get_drink_cost(drink):
     return MENU[drink]["cost"]
 
-
 def can_make_drink(money, drink):
     """Tests if we can make the drink. 
 
@@ -117,9 +117,31 @@ def can_make_drink(money, drink):
     # Making the drink
     print("Making the drink. ")
     return True
-    
-    
 
+# TODO: Handle espresso case where there is no milk. 
+def make_drink(drink, amount):
+    """Makes the drink - Updating resources, and money, returning the change for the customer. 
+    !! This function has side effects. 
+    Args:
+        drink (_type_): _description_
+    """    
+    
+    # Make drink:
+    print(f"Making {drink}...")
+    global money
+    
+    # Update resoucres. 
+    resources_used = MENU[drink][INGREDIENTS]
+    resources["coffee"] -= resources_used["coffee"]
+    resources["milk"] -= resources_used["milk"]
+    resources["water"] -= resources_used["water"] 
+    
+    # update money 
+    cost =  MENU[drink]["cost"]
+    money += cost
+    # return change
+    return amount - cost
+    
 # TODO: Implement general flow. 
 
 dont_quit = True
@@ -152,17 +174,8 @@ while dont_quit:
         # TODO: Remove the correct amounts from the resouces
         print(f"Making {drink}")
         # TODO: Return the correct amount to the client and update the money. 
-        
-
-        # if(has_resources("latte") and has_money(money, "latte")):
-            # print("Making latte")
-        
-        
-
-# print_report()
-
-# print(input_money())
-
+        change = make_drink(drink, current_amount)
+        print(f"Here your change: ${change}")
 
 
 # TODO: Create a function to test the resources
