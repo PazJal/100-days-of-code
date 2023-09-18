@@ -54,10 +54,25 @@ def input_money():
     
 # general order prompt
 def select_operation():
+    """Returns user selection from the menu. 
+
+    Returns:
+        string: the users choice. 
+    """    
+    
     operation = input("What would you like? ('e' for espresso, 'l' for latter, 'c' for cappuccino): ")
     return operation
 
 def has_resources(drink_selected):
+    """Checks if the machine has enough resources to make the drink
+
+    Args:
+        drink_selected (string): the selected drink
+
+    Returns:
+        boolean: True if there are the resources needed to make the drink
+    """    
+    
     drink = MENU[drink_selected]["ingredients"]
     if drink["water"] > resources["water"]:
         return False
